@@ -1,0 +1,1 @@
+recording the way to learn data structure
