@@ -1,0 +1,18 @@
+# 忽略所有编译产生的目标文件 (*.o)
+*.o
+
+# 忽略所有编译产生的可执行文件
+# Windows
+*.exe
+*.dll
+
+# Mac/Linux
+*.out
+*.so
+
+# 忽略 VS Code 的个人设置文件夹
+.vscode/
+
+# 忽略其他可能的编译输出 (比如 VS Code 的 C 插件)
+build/
+*.stackdump
