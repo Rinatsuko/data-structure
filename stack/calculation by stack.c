@@ -1,89 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 typedef struct stack
 {
-    int data;
+    char data;
     struct stack *next;
 } stack;
+char top(stack **ptr);
+char pop(stack **ptr);
+void push(stack **ptr, char data);
+int isempty(stack **ptr);
+char *convert(char string[], int n);
+int calculate(char string[]);
+int compare_priority(char a, char b);
+int main()
+{
 
-int isempty(stack *ptr)
-{
-    if (ptr == NULL)
-    {
-        return 1; // True (Empty)
-    }
-    else
-    {
-        return 0; // False (Not Empty)
-    }
+    return 0;
 }
-void push(stack **ptr, int value)
+
+void push(stack **ptr, char data)
 {
-    // 1. Create a new node
-    stack *newNode = (stack *)malloc(sizeof(stack));
-    if (newNode == NULL)
+    stack *temp = (stack *)malloc(sizeof(stack));
+    if (temp == NULL)
     {
-        printf("Memory allocation failed!\n");
         return;
     }
-    newNode->data = value;
-    newNode->next = *ptr;
-    *ptr = newNode;
+    temp->data = data;
+    temp->next = *ptr;
+    *ptr = temp;
 }
-
+int top(stack **ptr)
+{
+    if (*ptr == NULL)
+    {
+        printf("Stack is empty!\n");
+        return -1;
+    }
+    char a = (*ptr)->data;
+    return a;
+}
 int pop(stack **ptr)
 {
-
-    if (isempty(*ptr))
+    if (*ptr == NULL)
     {
         printf("Stack Underflow!\n");
         return -1;
     }
 
-    stack *temp = *ptr;
-    int poppedValue = temp->data;
-
-    // 3. Move head to the next node
-    *ptr = (*ptr)->next;
-
-    // 4. Free the old node
+    char a = (*ptr)->data;
+    stack *temp = (*ptr);
+    (*ptr) = (*ptr)->next;
     free(temp);
-
-    return poppedValue;
+    return a;
 }
-
-// Peek/Top (Look at top without removing)
-// 查看栈顶元素（但不删除）- 转换表达式时非常需要这个函数！
-int peek(stack *ptr)
+int isempty(stack **ptr)
 {
-    if (isempty(ptr))
+    if ((*ptr) == NULL)
     {
-        return -1; // Stack is empty
+        return 1;
     }
-    return ptr->data;
+    else
+    {
+        return 0;
+    }
 }
-
-// --- Simple Test in Main ---
-int main()
+char *convert(char string[], int n)
 {
-    stack *operatorStack = NULL; // Head pointer
-
-    // Testing char (ASCII) storage
-    printf("Pushing 'A'...\n");
-    push(&operatorStack, 'A');
-
-    printf("Pushing '('...\n");
-    push(&operatorStack, '(');
-
-    printf("Is empty? %d\n", isempty(operatorStack)); // Should be 0
-
-    printf("Peek top: %c\n", peek(operatorStack)); // Should be '('
-
-    printf("Popped: %c\n", pop(&operatorStack)); // '('
-    printf("Popped: %c\n", pop(&operatorStack)); // 'A'
-
-    printf("Is empty? %d\n", isempty(operatorStack)); // Should be 1
-
-    return 0;
+    for (int i = 0; i < n; i++)
+    {
+    }
 }
+int calculate(char string[]);
